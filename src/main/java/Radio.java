@@ -10,6 +10,14 @@ public class Radio {
         }
     }
 
+    public void nextVolume() {
+        if (currentVolume < 100) {
+            currentVolume++;
+        } else {
+            currentVolume = 100;
+        }
+    }
+
     public int getCurrentStation() {
         return currentStation;
     }
@@ -30,15 +38,15 @@ public class Radio {
         return currentVolume;
     }
 
-    public int setCurrentVolume(int getCurrentVolume) {
+    public int setCurrentVolume(int currentVolume) {
         if (currentVolume < 0) {
-            return getCurrentVolume;
+            return currentVolume;
         }
         if (currentVolume > 100) {
-            return getCurrentVolume;
+            return currentVolume;
         }
-
-        return getCurrentVolume;
+        this.currentVolume = currentVolume;
+        return currentVolume;
     }
 }
 
