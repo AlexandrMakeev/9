@@ -1,46 +1,47 @@
 public class Radio {
-    private int currentStation;
-    private int currentVolume;
-    private int stationCount;
+    private int minVolume = 0;
+    private int maxVolume = 100;
+    private int firstStation = 0;
+    private int currentStation = firstStation;
+    private int currentVolume = minVolume;
 
-    public Radio() {
-        this.stationCount = 10;
-    }
+    private int currentCoint;
 
-    public Radio(int stationCount) {
-        this.stationCount = stationCount;
+
+    public Radio(int currentCoint) {
+        this.currentCoint = currentCoint;
     }
 
 
     public void next() {
-        if (currentStation < stationCount - 1) {
+        if (currentStation < currentCoint - 1) {
             currentStation++;
         } else {
-            currentStation = 0;
+            currentStation = firstStation;
         }
     }
 
     public void prev() {
-        if (currentStation > 0) {
+        if (currentStation > firstStation) {
             currentStation--;
         } else {
-            currentStation = stationCount -1;
+            currentStation = currentCoint -1;
         }
     }
 
     public void nextVolume() {
-        if (currentVolume < 100) {
+        if (currentVolume < maxVolume) {
             currentVolume++;
         } else {
-            currentVolume = 100;
+            currentVolume = maxVolume;
         }
     }
 
     public void prevVolume() {
-        if (currentVolume > 0) {
+        if (currentVolume > minVolume) {
             currentVolume--;
         } else {
-            currentVolume = 0;
+            currentVolume = minVolume;
         }
     }
 
@@ -49,10 +50,10 @@ public class Radio {
     }
 
     public int setCurrentStation(int currentStation) {
-        if (currentStation < 0) {
+        if (currentStation < firstStation ) {
             return currentStation;
         }
-        if (currentStation > stationCount - 1) {
+        if (currentStation > currentCoint -1) {
             return currentStation;
         }
 
@@ -65,14 +66,13 @@ public class Radio {
     }
 
     public int setCurrentVolume(int currentVolume) {
-        if (currentVolume < 0) {
+        if (currentVolume < minVolume) {
             return currentVolume;
         }
-        if (currentVolume > 100) {
+        if (currentVolume > maxVolume) {
             return currentVolume;
         }
         this.currentVolume = currentVolume;
         return currentVolume;
     }
 }
-
